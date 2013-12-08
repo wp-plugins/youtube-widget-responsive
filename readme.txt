@@ -32,9 +32,12 @@ You're done!
 = What should I put in the video field? =
 
 You can put the link of youtube like 
-"http://www.youtube.com/watch?v=wyx6JDQCslE"
+
+http://www.youtube.com/watch?v=wyx6JDQCslE
+
 or only the id of video like
-"wyx6JDQCslE"
+
+wyx6JDQCslE
 
 = I would like to report a bug or help with the translation for my language, how can I do that? =
 
