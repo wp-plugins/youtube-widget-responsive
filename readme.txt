@@ -42,21 +42,38 @@ Simple, just write an email to stefanoai@stefanoai.com
 
 For the translation, just write in the mail these phrases translated in brackets
 
-"title [title in your language]"
-"video [video in your language]"
+title [title in your language]
+
+video [video in your language]
+
 Start video automatically [Start... in your language]
+
 Allow fullscreen[Allow... in your language]
+
 Start from [Start... in your language]
+
 end to [end to in your language]
+
 minute [minute in your language]
+
 second [second in your language]
+
 Enable substitles automatically [Enable... in your language]
+
 language [language in your language]
+
 Enable privacy-enhanced mode [Enable... in your language]
+
 Suggested videos show When the video finishes [Suggested... in your language]
+
 YouTube Responsive enable you to place a widget with youtube video. Among the various options there is Also The Possibility to start the video automatically [YouTube... in your language]
 
 Thank you.
+
+= I can make a donation to help keep the software up to date? =
+Sure just press <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=stefanoai%40stefanoai%2ecom&lc=IS&item_name=StefanoAI&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest">here</a>
+
+Thank you so much.
 
 
 == Screenshots ==
