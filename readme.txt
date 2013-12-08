@@ -42,8 +42,8 @@ Simple, just write an email to stefanoai@stefanoai.com
 
 For the translation, just write in the mail these phrases translated in brackets
 
-title [title in your language]
-video [video in your language]
+"title [title in your language]"
+"video [video in your language]"
 Start video automatically [Start... in your language]
 Allow fullscreen[Allow... in your language]
 Start from [Start... in your language]
