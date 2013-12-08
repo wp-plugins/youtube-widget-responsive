@@ -11,14 +11,14 @@ Widgets responsive to embed youtube in your sidebar, with all available options.
 
 == Description ==
 
-Widgets responsive to embed youtube in your sidebar, with all available options.
-Among the various options you can choose:
-- Choosing minutes and seconds of the start and end of the video
-- Automatically subtitles On/Off
-- Automatically start video On/Off
-- Enabling Privacy Mode On/Off
-- Enable fullscreen On/Off
-- Enable the suggested videos at the end of playback On/Off
+Widgets responsive to embed youtube in your sidebar, with all available options.<br/>
+Among the various options you can choose:<br/>
+- Choosing minutes and seconds of the start and end of the video<br/>
+- Automatically subtitles On/Off<br/>
+- Automatically start video On/Off<br/>
+- Enabling Privacy Mode On/Off<br/>
+- Enable fullscreen On/Off<br/>
+- Enable the suggested videos at the end of playback On/Off<br/>
 Languages: EN, IT, AR, DE, ES, FR, HI, RU, ZH (thanks to Amlugil and google Translate)
 
 == Installation ==
