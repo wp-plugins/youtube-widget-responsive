@@ -19,7 +19,7 @@ Among the various options you can choose:
 - Enabling Privacy Mode On/Off
 - Enable fullscreen On/Off
 - Enable the suggested videos at the end of playback On/Off
-Languages: EN, IT, AR, DE, ES, FR, HI, RU, ZH (thanks to Amluigil and google Translate)
+Languages: EN, IT, AR, DE, ES, FR, HI, RU, ZH (thanks to Amlugil and google Translate)
 
 == Installation ==
 
