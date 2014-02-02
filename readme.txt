@@ -87,5 +87,10 @@ Thank you so much.
 2. The widget on sidebar auto resized 
 
 == Changelog ==
+= 0.2 =
+* Removed 'namespace' (PHP 5.3 is no longer required)
+* added enqueue_script for jQuery
+* moved responsive js on wp_footer
+
 = 0.1 =
 * Welcome
