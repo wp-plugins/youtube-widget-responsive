@@ -3,11 +3,9 @@
   Plugin Name: YouTube widget responsive
   Description: Widgets responsive to embed youtube in your sidebar, with all available options.
   Author: StefanoAI
-  Version: 0.1
+  Version: 0.2
   Author URI: http://www.stefanoai.com
  */
-
-namespace StefanoAI;
 
 class YouTubeResponsive extends \WP_Widget {
 
@@ -17,6 +15,32 @@ class YouTubeResponsive extends \WP_Widget {
                 'YouTube Responsive', // Name
                 array('description' => YOUTUBE_description,) // Args
         );
+    }
+
+    function wp_head() {
+        wp_enqueue_script('jquery');
+    }
+
+    function wp_footer() {
+        ?>
+        <script type="text/javascript">
+            function AI_responsive_widget() {
+                jQuery('iframe.StefanoAI-youtube-responsive').each(function() {
+                    var width = jQuery(this).parent().innerWidth();
+                    jQuery(this).css('width', width + "px");
+                    jQuery(this).css('height', width / (16 / 9) + "px");
+                });
+            }
+            if (typeof jQuery !== 'undefined') {
+                jQuery(document).ready(function() {
+                    AI_responsive_widget();
+                });
+                jQuery(window).resize(function() {
+                    AI_responsive_widget();
+                });
+            }
+        </script>
+        <?php
     }
 
     function widget($args, $instance) {
@@ -37,26 +61,12 @@ class YouTubeResponsive extends \WP_Widget {
             $cc_lang = !empty($instance['cc_lang']) ? '&hl=' . $instance['cc_lang'] : '';
             $allowfullscreen = !empty($instance['allowfullscreen']) ? 'allowfullscreen="true"' : '';
 
-            @$widget = "<iframe id='$id' width='160' height='90' src='$url$idvideo?$autoplay$rel$cc_lang$cc_load$start$end' frameborder='0' $allowfullscreen></iframe>";
+            @$widget = "<iframe id='$id' class='StefanoAI-youtube-responsive' width='160' height='90' src='$url$idvideo?$autoplay$rel$cc_lang$cc_load$start$end' frameborder='0' $allowfullscreen></iframe>";
             $title = apply_filters('widget_title', $instance['title']);
             echo $before_widget;
             echo $before_title . $title . $after_title;
             echo $widget;
             echo $after_widget;
-            ?>
-            <script type="text/javascript">
-                jQuery(document).ready(function() {
-                    var width = jQuery("iframe#<?php echo $id ?>").parent().innerWidth();
-                    jQuery("iframe#<?php echo $id ?>").css("width", width + "px");
-                    jQuery("iframe#<?php echo $id ?>").css("height", width / (16 / 9) + "px");
-                });
-                jQuery(window).resize(function() {
-                    var width = jQuery("iframe#<?php echo $id ?>").parent().innerWidth();
-                    jQuery("iframe#<?php echo $id ?>").css("width", width + "px");
-                    jQuery("iframe#<?php echo $id ?>").css("height", width / (16 / 9) + "px");
-                });
-            </script>
-            <?php
         }
     }
 
@@ -144,8 +154,9 @@ if (file_exists(plugin_dir_path(__FILE__) . "lang/" . WPLANG . '.php')) {
 }
 
 function register_youtuberesponsive_widgets() {
-    register_widget('StefanoAI\YouTubeResponsive');
+    register_widget('YouTubeResponsive');
 }
 
-add_action('widgets_init', '\StefanoAI\register_youtuberesponsive_widgets');
-?>
+add_action('widgets_init', 'register_youtuberesponsive_widgets');
+add_action('wp_footer', array('YouTubeResponsive', 'wp_footer'), 99);
+add_action('wp_head', array('YouTubeResponsive', 'wp_head'), 99);
