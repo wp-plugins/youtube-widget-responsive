@@ -7,7 +7,15 @@
  */
 define("YOUTUBE_title", "标题");
 define("YOUTUBE_video", "视频");
+define("YOUTUBE_autohide", "自动隐藏视频进度条");
 define("YOUTUBE_autoplay", "自动启动视频");
+define("YOUTUBE_theme", "控制杆的主题");
+define("YOUTUBE_disablekb", "关闭播放器键盘控制");
+define("YOUTUBE_hide_iv_load_policy", "隐藏视频注释");
+define("YOUTUBE_modestbranding", "隐藏YouTube标志上的控制杆");
+define("YOUTUBE_hide_showinfo", "隐藏视频标题和上传视频开始播放前");
+define("YOUTUBE_color", "进度条的颜色选择");
+define("YOUTUBE_controls", "显示控制栏");
 define("YOUTUBE_allowfullscreen", "启用全屏");
 define("YOUTUBE_start_time", "从开始开始");
 define("YOUTUBE_end_time", "视频结束");

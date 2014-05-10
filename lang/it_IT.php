@@ -7,7 +7,15 @@
  */
 define("YOUTUBE_title", "Titolo");
 define("YOUTUBE_video", "Video");
+define("YOUTUBE_autohide", "Nascondi automaticamente la barra di avanzamento del video");
 define("YOUTUBE_autoplay", "Avviare il video automaticamente");
+define("YOUTUBE_theme", "Tema della barra di controllo");
+define("YOUTUBE_disablekb", "Disabilitarei controlli da tastiera");
+define("YOUTUBE_hide_iv_load_policy", "Nascondi le annotazioni video");
+define("YOUTUBE_modestbranding", "Nascondi il logo di YouTube nella barra di controllo");
+define("YOUTUBE_hide_showinfo", "Nascondi il titolo del video e l'uploader prima che il video inizi la produzione");
+define("YOUTUBE_color", "Scegli il colore della barra di avanzamento");
+define("YOUTUBE_controls", "Mostra la barra di controllo");
 define("YOUTUBE_allowfullscreen", "Abilitare fullscreen");
 define("YOUTUBE_start_time", "Avvio partendo da");
 define("YOUTUBE_end_time", "Fine del video a");

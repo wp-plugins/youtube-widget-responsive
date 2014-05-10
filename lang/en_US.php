@@ -7,7 +7,15 @@
  */
 define("YOUTUBE_title", "Title");
 define("YOUTUBE_video", "Video");
+define("YOUTUBE_autohide", "Auto hide Video progress bar");
 define("YOUTUBE_autoplay", "Start video automatically");
+define("YOUTUBE_theme", "Theme of control bar");
+define("YOUTUBE_disablekb", "Disable the player Keyboard controls");
+define("YOUTUBE_hide_iv_load_policy", "Hide video annotations");
+define("YOUTUBE_modestbranding", "Hide YouTube logo on controls bar");
+define("YOUTUBE_hide_showinfo", "Hide the video title and uploader before the video starts playing");
+define("YOUTUBE_color", "Select color of progress bar");
+define("YOUTUBE_controls", "Show controls bar");
 define("YOUTUBE_allowfullscreen", "Allow fullscreen");
 define("YOUTUBE_start_time", "Start from");
 define("YOUTUBE_end_time", "End to");

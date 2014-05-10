@@ -7,7 +7,15 @@
  */
 define ("YOUTUBE_title", "Título");
 define ("YOUTUBE_video", "Vídeo");
+define("YOUTUBE_autohide", "Ocultar automáticamente la barra de progreso del vídeo");
 define ("YOUTUBE_autoplay", "Inicie el vídeo de forma automática");
+define("YOUTUBE_theme", "Tema de la barra de control");
+define("YOUTUBE_disablekb", "Desactivar los controles del reproductor de teclado");
+define("YOUTUBE_hide_iv_load_policy", "Ocultar anotaciones de vídeo");
+define("YOUTUBE_modestbranding", "Ocultar logotipo de YouTube en los controles de la barra");
+define("YOUTUBE_hide_showinfo", "Ocultar el título del vídeo y cargador antes de que el vídeo comienza a reproducirse");
+define("YOUTUBE_color", "Selecciona el color de la barra de progreso");
+define("YOUTUBE_controls", "Mostrar los controles de la barra");
 define ("YOUTUBE_allowfullscreen", "Activar pantalla completa");
 define ("YOUTUBE_start_time", "Comenzando a partir de");
 define ("YOUTUBE_end_time", "Fin de vídeo");

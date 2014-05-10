@@ -7,7 +7,15 @@
  */
 define("YOUTUBE_title", "لقب");
 define("YOUTUBE_video", "فيديو");
+define("YOUTUBE_autohide", "السيارات إخفاء شريط التقدم فيديو");
 define("YOUTUBE_autoplay", "بدء الفيديو تلقائيا");
+define("YOUTUBE_theme", "موضوع شريط التحكم");
+define("YOUTUBE_disablekb", "تعطيل اعب الضوابط لوحة المفاتيح");
+define("YOUTUBE_hide_iv_load_policy", "إخفاء الشروح الفيديو");
+define("YOUTUBE_modestbranding", "إخفاء الشعار على يوتيوب شريط الضوابط");
+define("YOUTUBE_hide_showinfo", "إخفاء عنوان الفيديو ورافع قبل بدء تشغيل الفيديو");
+define("YOUTUBE_color", "حدد لون شريط التقدم");
+define("YOUTUBE_controls", "شريط المعرض الضوابط");
 define("YOUTUBE_allowfullscreen", "تمكين ملء الشاشة");
 define("YOUTUBE_start_time", "تبدأ اعتبارا من");
 define("YOUTUBE_end_time", "نهاية الفيديو");
