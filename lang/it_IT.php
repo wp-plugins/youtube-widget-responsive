@@ -27,4 +27,15 @@ define("YOUTUBE_privacy", "Abilitazione della modalità privacy ottimizzata [<a 
 define("YOUTUBE_suggested", "Mostra video suggeriti al termine del video");
 define("YOUTUBE_description", "YouTube Responsive vi permette di inserire un widget di un filmato youtube.
 Tra le varie opzioni vi è anche la possibilità di far avviare il video automaticamente");
-?>
+define ("YOUTUBE_name", "Video YouTube ");
+define ("YOUTUBE_autohide_default", "Default");
+define ("YOUTUBE_autohide_hide_video_progress_bar_after_the_video_starts_playing", "Nascondi la barra di avanzamento dopo che il video inizia");
+define ("YOUTUBE_autohide_show_always", "Sempre");
+define ("YOUTUBE_theme_dark", "Scuro");
+define ("YOUTUBE_theme_light", "Chiaro");
+define ("YOUTUBE_color_red", "Rosso");
+define ("YOUTUBE_color_white", "Bianco");
+define ("YOUTUBE_controls_always", "Sempre");
+define ("YOUTUBE_controls_on_video_playback", "Durante la riproduzione video");
+define ("YOUTUBE_controls_never", "Mai");
+define ("YOUTUBE_resolution", "Risoluzione");

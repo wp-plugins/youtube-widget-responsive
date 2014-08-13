@@ -27,4 +27,15 @@ define ("YOUTUBE_privacy", "Activar el modo de privacidad mejorada [<a target='_
 define ("YOUTUBE_suggested", "Mostrar sugirió videos al final del video");
 define ("YOUTUBE_description", "Responsive YouTube le permite depositar un widget en un video de youtube. 
 Entre las diversas opciones, también existe la posibilidad de iniciar automáticamente el vídeo");
-?>
+define ("YOUTUBE_name", "Video YouTube");
+define ("YOUTUBE_autohide_default", "Default");
+define ("YOUTUBE_autohide_hide_video_progress_bar_after_the_video_starts_playing", "Ocultar barra de progreso vídeo tras vídeo comienza a reproducirse");
+define ("YOUTUBE_autohide_show_always", "Mostrar siempre ");
+define ("YOUTUBE_theme_dark", "Oscuro");
+define ("YOUTUBE_theme_light", "Claro");
+define ("YOUTUBE_color_red", "Rojo");
+define ("YOUTUBE_color_white", "Blanco");
+define ("YOUTUBE_controls_always", "Siempre");
+define ("YOUTUBE_controls_on_video_playback", "En la reproducción de vídeo");
+define ("YOUTUBE_controls_never", "Nunca");
+define ("YOUTUBE_resolution", "Resolución");

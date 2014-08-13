@@ -26,4 +26,15 @@ define("YOUTUBE_cc_lang", "[en] اللغة");
 define("YOUTUBE_privacy", "[<a target='_blank' href='https://support.google.com/youtube/answer/171780?expand=PrivacyEnhancedMode&hl=it#privacy'>?</a>]تمكين الوضع المحسن للخصوصية");
 define("YOUTUBE_suggested", "مشاهدة أشرطة الفيديو واقترح في نهاية الفيديو");
 define("YOUTUBE_description", "استجابة يوتيوب تمكنك من وضع القطعة على شريط فيديو يوتيوب. من بين الخيارات المختلفة، وهناك أيضا إمكانية لبدء تلقائيا الفيديو");
-?>
+define ("YOUTUBE_name", "فيديو يوتيوب");
+define ("YOUTUBE_autohide_default", "الافتراضي");
+define ("YOUTUBE_autohide_hide_video_progress_bar_after_the_video_starts_playing", "إخفاء شريط تقدم الفيديو بعد بدء لعب الفيديو ");
+define ("YOUTUBE_autohide_show_always", "تظهر دائما");
+define ("YOUTUBE_theme_dark", "الظلام");
+define ("YOUTUBE_theme_light", "ضوء");
+define ("YOUTUBE_color_red", "أحمر");
+define ("YOUTUBE_color_white", "الأبيض");
+define ("YOUTUBE_controls_always", "دائما");
+define ("YOUTUBE_controls_on_video_playback", "على تشغيل الفيديو");
+define ("YOUTUBE_controls_never", "أبدا");
+define ("YOUTUBE_resolution", "قرار");

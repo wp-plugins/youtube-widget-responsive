@@ -27,4 +27,15 @@ define("YOUTUBE_privacy", "Enable privacy-enhanced mode [<a target='_blank' href
 define("YOUTUBE_suggested", "Show suggested videos when the video finishes");
 define("YOUTUBE_description", "YouTube Responsive enable you to place a widget with youtube video.
 Among the various options there is also the possibility to start the video automatically");
-?>
+define ("YOUTUBE_name", "Video YouTube");
+define ("YOUTUBE_autohide_default", "Default");
+define ("YOUTUBE_autohide_hide_video_progress_bar_after_the_video_starts_playing", "Hide video progress bar after video starts playing");
+define ("YOUTUBE_autohide_show_always", "Show always");
+define ("YOUTUBE_theme_dark", "Dark");
+define ("YOUTUBE_theme_light", "Light");
+define ("YOUTUBE_color_red", "Red");
+define ("YOUTUBE_color_white", "White");
+define ("YOUTUBE_controls_always", "Always");
+define ("YOUTUBE_controls_on_video_playback", "On video playback");
+define ("YOUTUBE_controls_never", "Never");
+define ("YOUTUBE_resolution", "Resolution");
