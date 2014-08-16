@@ -1,7 +1,7 @@
 === Youtube Widget Responsive ===
 Contributors: stefanoai
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=stefanoai%40stefanoai%2ecom&lc=IS&item_name=StefanoAI&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
-Tags: youtube, responsive, widget, autoplay, YouTube embed, YouTube plugin, embed youtube, embedding youtube, no-cookie, youtube plugin, sidebar, simple youtube, annotations, wordpress youtube widget, wordpress youtube embed, video plugin, video widget, shortcode youtube
+Tags: youtube, responsive, widget, autoplay, YouTube embed, YouTube plugin, embed youtube, embedding youtube, no-cookie, youtube plugin, sidebar, simple youtube, annotations, wordpress youtube widget, wordpress youtube embed, video plugin, video widget, shortcode youtube, shortcode
 Requires at least: 3.0.1
 Tested up to: 3.9.2
 Stable tag: 0.6
