@@ -4,14 +4,14 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=stefa
 Tags: youtube, responsive, widget, autoplay, YouTube embed, YouTube plugin, embed youtube, embedding youtube, no-cookie, youtube plugin, sidebar, simple youtube, annotations, wordpress youtube widget, wordpress youtube embed, video plugin, video widget, shortcode youtube
 Requires at least: 3.0.1
 Tested up to: 3.9.2
-Stable tag: 0.5
+Stable tag: 0.6
 License: GPLv2 or later
 
-Widgets responsive to embed youtube in your sidebar, with all available options.
+Widgets + ShortCode responsive to embed youtube in your sidebar or in your content [youtube video=...], with all available options.
 
 == Description ==
 
-Widgets responsive to embed youtube in your sidebar, with all available options.
+Widgets + ShortCode responsive to embed youtube in your sidebar or in your content [youtube video=...], with all available options.
 Among the various options you can choose:
 <ul>
 <li>- Choosing minutes and seconds of the start and end of the video</li>
@@ -28,11 +28,11 @@ Among the various options you can choose:
 <li>- Enable the suggested videos at the end of playback On/Off</li>
 <li>- Can be set max-width</li>
 </ul>
-Languages: EN, IT, AR, DE, ES, FR, HE, HI, RU, ZH (thanks to Amlugil, quadbox, Ksenia and google Translate)
+Languages: EN, IT, AR, DE, ES, FR, HE, HI, RU, ZH (thanks to Amlugil, quadbox, Ksenia, Dietz and google Translate)
 
 == Installation ==
 
-Upload the Youtube Widget Responsive plugin to your blog, Activate it, Add in your sidebar from Widgets.
+Upload the Youtube Widget Responsive plugin to your blog, Activate it, Add in your sidebar from Widgets OR put in the content [youtube video=link_youtube].
 
 You're done!
 
@@ -110,6 +110,13 @@ Thank you so much.
 2. The widget on sidebar auto resized 
 
 == Changelog ==
+
+= 0.6 =
+* Update german language
+* Added w3c option
+* Added filter youtube_iframe on iframe src.
+
+
 = 0.5 =
 * Added shortcode [youtube video=_9tBFVKhn5o]
 * Added new options

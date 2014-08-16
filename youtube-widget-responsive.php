@@ -3,7 +3,7 @@
   Plugin Name: YouTube widget responsive
   Description: Widgets responsive and shorcode to embed youtube in your sidebar or in your content, with all available options.
   Author: StefanoAI
-  Version: 0.5
+  Version: 0.6
   Author URI: http://www.stefanoai.com
  */
 
@@ -49,26 +49,28 @@ class YouTubeResponsive extends \WP_Widget {
         preg_match('/\?v=([^&]+)/', $params['video'], $m);
         $idvideo = !empty($m[1]) ? $m[1] : $params['video'];
         if (!empty($idvideo)) {
-            $autohide = isset($params['autohide']) ? "&autohide=" . $params['autohide'] : '';
-            $autoplay = !empty($params['autoplay']) ? '&autoplay=1' : '';
-            $cc_load = !empty($params['cc_load']) ? '&cc_load_policy=1' : '';
-            $cc_lang = !empty($params['cc_lang']) ? '&hl=' . $params['cc_lang'] : '';
-            $color = isset($params['color']) ? '&color=' . $params['color'] : '';
-            $controls = isset($params['controls']) ? '&controls=' . $params['controls'] : '';
-            $disablekb = isset($params['disablekb']) ? '&disablekb=' . $params['disablekb'] : '';
+            $w3c = !empty($params['w3c']) ? 1 : 0;
+            $and = $w3c ? '&amp;' : '&';
+            $autohide = isset($params['autohide']) ? $and . "autohide=" . $params['autohide'] : '';
+            $autoplay = !empty($params['autoplay']) ? $and . 'autoplay=1' : '';
+            $cc_load = !empty($params['cc_load']) ? $and . 'cc_load_policy=1' : '';
+            $cc_lang = !empty($params['cc_lang']) ? $and . 'hl=' . $params['cc_lang'] : '';
+            $color = isset($params['color']) ? $and . 'color=' . $params['color'] : '';
+            $controls = isset($params['controls']) ? $and . 'controls=' . $params['controls'] : '';
+            $disablekb = isset($params['disablekb']) ? $and . 'disablekb=' . $params['disablekb'] : '';
             $endtime = (!empty($params['end_m']) ? intval($params['end_m']) * 60 : 0) + (!empty($params['end_s']) ? intval($params['end_s']) : 0);
-            $end = !empty($endtime) ? "&end=$endtime" : '';
+            $end = !empty($endtime) ? $and . "end=$endtime" : '';
             $allowfullscreen = !empty($params['allowfullscreen']) ? 'allowfullscreen="true"' : '';
-            $fs = !empty($params['allowfullscreen']) ? '&fs=1' : '&fs=0';
-            $iv_load_policy = isset($params['iv_load_policy']) ? '&iv_load_policy=' . $params['iv_load_policy'] : '';
-            $loop = isset($params['loop']) ? '&loop=' . $params['loop'] : '';
-            $modestbranding = isset($params['modestbranding']) ? '&modestbranding=' . $params['modestbranding'] : '';
-            $rel = !empty($params['suggested']) && $params['suggested'] == '1' ? '' : '&rel=0';
-            $showinfo = !empty($params['showinfo']) && $params['showinfo'] == '1' ? '' : '&showinfo=0';
+            $fs = !empty($params['allowfullscreen']) ? $and . 'fs=1' : $and . 'fs=0';
+            $iv_load_policy = isset($params['iv_load_policy']) ? $and . 'iv_load_policy=' . $params['iv_load_policy'] : '';
+            $loop = isset($params['loop']) ? $and . 'loop=' . $params['loop'] : '';
+            $modestbranding = isset($params['modestbranding']) ? $and . 'modestbranding=' . $params['modestbranding'] : '';
+            $rel = !empty($params['suggested']) && $params['suggested'] == '1' ? '' : $and . 'rel=0';
+            $showinfo = !empty($params['showinfo']) && $params['showinfo'] == '1' ? '' : $and . 'showinfo=0';
             $starttime = (!empty($params['start_m']) ? intval($params['start_m']) * 60 : 0) + (!empty($params['start_s']) ? intval($params['start_s']) : 0);
-            $start = (!empty($starttime)) ? "&start=$starttime" : "";
-            $theme = isset($params['theme']) ? '&theme=' . $params['theme'] : '';
-            $quality = isset($params['quality']) ? '&vq=' . $params['quality'] : '';
+            $start = (!empty($starttime)) ? $and . "start=$starttime" : "";
+            $theme = isset($params['theme']) ? $and . 'theme=' . $params['theme'] : '';
+            $quality = isset($params['quality']) ? $and . 'vq=' . $params['quality'] : '';
             $url = !empty($params['privacy']) && $params['privacy'] == '1' ? '//www.youtube-nocookie.com/embed/' : '//www.youtube.com/embed/';
 
             $class = isset($params['class']) ? esc_attr($params['class']) : '';
@@ -76,7 +78,7 @@ class YouTubeResponsive extends \WP_Widget {
             $maxw = !empty($params['maxw']) ? 'max-width:' . intval($params['maxw']) . 'px;' : '';
             @$id = ++$youtube_id;
             @$urlembed = "<iframe id='$id' class='StefanoAI-youtube-responsive $class' width='160' height='90' src='$url$idvideo?$autohide$autoplay$cc_load$cc_lang$color$controls$disablekb$end$fs$iv_load_policy$loop$modestbranding$rel$showinfo$start$theme$quality' frameborder='0' $allowfullscreen style='$maxw$style'></iframe>";
-            return $urlembed;
+            return apply_filters('youtube_iframe', $urlembed);
         }
         return '';
     }
@@ -121,6 +123,7 @@ class YouTubeResponsive extends \WP_Widget {
         $instance['class'] = !empty($new_instance['class']) ? $new_instance['class'] : '';
         $instance['style'] = !empty($new_instance['style']) ? $new_instance['style'] : '';
         $instance['maxw'] = !empty($new_instance['maxw']) ? $new_instance['maxw'] : '';
+        $instance['w3c'] = isset($new_instance['w3c']) && $new_instance['w3c'] == 0 ? 0 : 1;
         $instance['privacy'] = !empty($new_instance['privacy']) ? $new_instance['privacy'] : 0;
         return $instance;
     }
@@ -150,6 +153,7 @@ class YouTubeResponsive extends \WP_Widget {
         $class = !empty($instance['class']) ? $instance['class'] : '';
         $style = !empty($instance['style']) ? $instance['style'] : '';
         $maxw = !empty($instance['maxw']) ? $instance['maxw'] : '';
+        $w3c = !empty($instance['w3c']) ? 1 : 0;
         $privacy = !empty($instance['privacy']) ? $instance['privacy'] : 0;
         ?>
         <p>
@@ -253,6 +257,10 @@ class YouTubeResponsive extends \WP_Widget {
         <p>
             <input  id="<?php echo $this->get_field_id('showinfo'); ?>" name="<?php echo $this->get_field_name('showinfo'); ?>" type="checkbox" value="0" <?php echo esc_attr($showinfo) == "0" ? 'checked' : ''; ?> />
             <label for="<?php echo $this->get_field_id('showinfo'); ?>"><?php echo YOUTUBE_hide_showinfo ?> </label> 
+        </p>
+        <p>
+            <input  id="<?php echo $this->get_field_id('w3c'); ?>" name="<?php echo $this->get_field_name('w3c'); ?>" type="checkbox" value="1" <?php echo esc_attr($w3c) == "1" ? 'checked' : ''; ?> />
+            <label for="<?php echo $this->get_field_id('w3c'); ?>">W3C standard </label> 
         </p>
         <p>
             <input  id="<?php echo $this->get_field_id('privacy'); ?>" name="<?php echo $this->get_field_name('privacy'); ?>" type="checkbox" value="1" <?php echo esc_attr($privacy) == "1" ? 'checked' : ''; ?> />
