@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=stefa
 Tags: youtube, responsive, widget, autoplay, YouTube embed, YouTube plugin, embed youtube, embedding youtube, no-cookie, youtube plugin, sidebar, simple youtube, annotations, wordpress youtube widget, wordpress youtube embed, video plugin, video widget, shortcode youtube, shortcode
 Requires at least: 3.0.1
 Tested up to: 3.9.2
-Stable tag: 0.6
+Stable tag: 0.7
 License: GPLv2 or later
 
 Widgets + ShortCode responsive to embed youtube in your sidebar or in your content [youtube video=...], with all available options.
@@ -111,8 +111,13 @@ Thank you so much.
 
 == Changelog ==
 
+= 0.7 =
+* Updated German language
+* Updated Russian language
+* Updated Hebrew language
+
 = 0.6 =
-* Update german language
+* Update German language
 * Added w3c option
 * Added filter youtube_iframe on iframe src.
 

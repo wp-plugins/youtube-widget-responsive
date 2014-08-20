@@ -4,6 +4,7 @@
  * @author StefanoAI
  * @copyright (c) 2013, Stefano Calabrese
  * Created 6-nov-2013
+ * Thanks to Ksenia
  */
 define ("YOUTUBE_title", "Заголовок");
 define ("YOUTUBE_video", "Ссылка на видео на YouTube");
