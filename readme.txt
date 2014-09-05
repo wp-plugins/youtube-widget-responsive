@@ -3,8 +3,8 @@ Contributors: stefanoai
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=stefanoai%40stefanoai%2ecom&lc=IS&item_name=StefanoAI&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: youtube, responsive, widget, autoplay, YouTube embed, YouTube plugin, embed youtube, embedding youtube, no-cookie, youtube plugin, sidebar, simple youtube, annotations, wordpress youtube widget, wordpress youtube embed, video plugin, video widget, shortcode youtube, shortcode
 Requires at least: 3.0.1
-Tested up to: 3.9.2
-Stable tag: 0.7
+Tested up to: 4.0
+Stable tag: 0.8
 License: GPLv2 or later
 
 Widgets + ShortCode responsive to embed youtube in your sidebar or in your content [youtube video=...], with all available options.
@@ -111,6 +111,10 @@ Thank you so much.
 
 == Changelog ==
 
+= 0.8 =
+* Added support for playlist
+* Fixed responsive for padding in parent object
+
 = 0.7 =
 * Updated German language
 * Updated Russian language
@@ -146,8 +150,17 @@ Thank you so much.
         <ul>
             <li>The link at the video 
                 "http://www.youtube.com/watch?v=_9tBFVKhn5o"
+                or link to playlist like
+                "https://www.youtube.com/watch?v=KQ6zr6kCPj8&list=PLatuTuqWSQmViIeVthG2y9YssDtm8EvYt"
                 or only the id of video like
                 _9tBFVKhn5o
+            </li>
+        </ul>
+    </li>
+    <li><strong>list</strong> (supported players: AS3, HTML5)
+        <ul>
+            <li>
+    <p>The list value of link (you can put entire url on video without use this param)</p>
             </li>
         </ul>
     </li>

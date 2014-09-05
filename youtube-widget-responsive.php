@@ -3,7 +3,7 @@
   Plugin Name: YouTube widget responsive
   Description: Widgets responsive and shorcode to embed youtube in your sidebar or in your content, with all available options.
   Author: StefanoAI
-  Version: 0.7
+  Version: 0.8
   Author URI: http://www.stefanoai.com
  */
 
@@ -24,33 +24,42 @@ class YouTubeResponsive extends \WP_Widget {
 
     static function wp_footer() {
         ?><script type="text/javascript">function AI_responsive_widget() {
-                jQuery('iframe.StefanoAI-youtube-responsive').each(function() {
-                    var width = jQuery(this).parent().innerWidth();
-                    var maxwidth = jQuery(this).css('max-width').replace(/px/, '');
-                    if (maxwidth < width) {
-                        width = maxwidth;
+                        jQuery('iframe.StefanoAI-youtube-responsive').each(function() {
+                            var width = jQuery(this).parent().innerWidth();
+                            var maxwidth = jQuery(this).css('max-width').replace(/px/, '');
+                            var pl = parseInt(jQuery(this).parent().css('padding-left').replace(/px/, ''));
+                            var pr = parseInt(jQuery(this).parent().css('padding-right').replace(/px/, ''));
+                            width = width - pl - pr;
+                            if (maxwidth < width) {
+                                width = maxwidth;
+                            }
+                            jQuery(this).css('width', width + "px");
+                            jQuery(this).css('height', width / (16 / 9) + "px");
+                        });
                     }
-                    jQuery(this).css('width', width + "px");
-                    jQuery(this).css('height', width / (16 / 9) + "px");
-                });
-            }
-            if (typeof jQuery !== 'undefined') {
-                jQuery(document).ready(function() {
-                    AI_responsive_widget();
-                });
-                jQuery(window).resize(function() {
-                    AI_responsive_widget();
-                });
-            }</script><?php
+                    if (typeof jQuery !== 'undefined') {
+                        jQuery(document).ready(function() {
+                            AI_responsive_widget();
+                        });
+                        jQuery(window).resize(function() {
+                            AI_responsive_widget();
+                        });
+                    }</script><?php
     }
 
     static function makeEmbedUrl($params) {
         global $youtube_id;
         preg_match('/\?v=([^&]+)/', $params['video'], $m);
         $idvideo = !empty($m[1]) ? $m[1] : $params['video'];
+        preg_match('/(&|&amp;)list=([^&]+)/', $params['video'], $l);
+        $idlist = !empty($l[2]) ? $l[2] : '';
+        if (empty($idlist) && !empty($params['list'])) {
+            $idlist = $params['list'];
+        }
         if (!empty($idvideo)) {
             $w3c = !empty($params['w3c']) ? 1 : 0;
             $and = $w3c ? '&amp;' : '&';
+            $idlist = !empty($idlist) ? $and . "list=$idlist" : '';
             $autohide = isset($params['autohide']) ? $and . "autohide=" . $params['autohide'] : '';
             $autoplay = !empty($params['autoplay']) ? $and . 'autoplay=1' : '';
             $cc_load = !empty($params['cc_load']) ? $and . 'cc_load_policy=1' : '';
@@ -77,7 +86,7 @@ class YouTubeResponsive extends \WP_Widget {
             $style = isset($params['style']) ? esc_attr($params['style']) : '';
             $maxw = !empty($params['maxw']) ? 'max-width:' . intval($params['maxw']) . 'px;' : '';
             @$id = ++$youtube_id;
-            @$urlembed = "<iframe id='$id' class='StefanoAI-youtube-responsive $class' width='160' height='90' src='$url$idvideo?$autohide$autoplay$cc_load$cc_lang$color$controls$disablekb$end$fs$iv_load_policy$loop$modestbranding$rel$showinfo$start$theme$quality' frameborder='0' $allowfullscreen style='$maxw$style'></iframe>";
+            @$urlembed = "<iframe id='$id' class='StefanoAI-youtube-responsive $class' width='160' height='90' src='$url$idvideo?$idlist$autohide$autoplay$cc_load$cc_lang$color$controls$disablekb$end$fs$iv_load_policy$loop$modestbranding$rel$showinfo$start$theme$quality' frameborder='0' $allowfullscreen style='$maxw$style'></iframe>";
             return apply_filters('youtube_iframe', $urlembed);
         }
         return '';
