@@ -3,7 +3,7 @@
   Plugin Name: YouTube widget responsive
   Description: Widgets responsive and shorcode to embed youtube in your sidebar or in your content, with all available options.
   Author: StefanoAI
-  Version: 0.9
+  Version: 1.0
   Author URI: http://www.stefanoai.com
  */
 
@@ -295,8 +295,8 @@ class YouTubeResponsive extends \WP_Widget {
 
 }
 
-if (file_exists(plugin_dir_path(__FILE__) . "lang/" . WPLANG . '.php')) {
-    include_once plugin_dir_path(__FILE__) . "lang/" . WPLANG . '.php';
+if (file_exists(plugin_dir_path(__FILE__) . "lang/" . get_locale() . '.php')) {
+    include_once plugin_dir_path(__FILE__) . "lang/" . get_locale() . '.php';
 } else {
     include_once plugin_dir_path(__FILE__) . "lang/en_US.php";
 }
