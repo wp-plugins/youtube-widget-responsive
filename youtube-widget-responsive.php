@@ -3,7 +3,7 @@
   Plugin Name: YouTube widget responsive
   Description: Widgets responsive and shorcode to embed youtube in your sidebar or in your content, with all available options.
   Author: StefanoAI
-  Version: 1.0
+  Version: 1.0.1
   Author URI: http://www.stefanoai.com
  */
 
@@ -85,13 +85,14 @@ class YouTubeResponsive extends \WP_Widget {
             $start = (!empty($starttime)) ? $and . "start=$starttime" : "";
             $theme = isset($params['theme']) ? $and . 'theme=' . $params['theme'] : '';
             $quality = isset($params['quality']) ? $and . 'vq=' . $params['quality'] : '';
+            $wmode = !empty($params['wmode']) ? $and . 'wmode=transparent' : '';
             $url = !empty($params['privacy']) && $params['privacy'] == '1' ? '//www.youtube-nocookie.com/embed/' : '//www.youtube.com/embed/';
 
             $class = isset($params['class']) ? esc_attr($params['class']) : '';
             $style = isset($params['style']) ? esc_attr($params['style']) : '';
             $maxw = !empty($params['maxw']) ? 'max-width:' . intval($params['maxw']) . 'px;' : '';
             @$id = ++$youtube_id;
-            @$urlembed = "<iframe id='$id' class='StefanoAI-youtube-responsive $class' width='160' height='90' src='$url$idvideo?$idlist$autohide$autoplay$cc_load$cc_lang$color$controls$disablekb$end$fs$iv_load_policy$loop$modestbranding$rel$showinfo$start$theme$quality' frameborder='0' $allowfullscreen style='$maxw$style'></iframe>";
+            @$urlembed = "<iframe id='$id' class='StefanoAI-youtube-responsive $class' width='160' height='90' src='$url$idvideo?$idlist$autohide$autoplay$cc_load$cc_lang$color$controls$disablekb$end$fs$iv_load_policy$loop$modestbranding$rel$showinfo$start$theme$quality$wmode' frameborder='0' $allowfullscreen style='$maxw$style'></iframe>";
             return apply_filters('youtube_iframe', $urlembed);
         }
         return '';
@@ -139,6 +140,7 @@ class YouTubeResponsive extends \WP_Widget {
         $instance['maxw'] = !empty($new_instance['maxw']) ? $new_instance['maxw'] : '';
         $instance['w3c'] = isset($new_instance['w3c']) && $new_instance['w3c'] == 0 ? 0 : 1;
         $instance['privacy'] = !empty($new_instance['privacy']) ? $new_instance['privacy'] : 0;
+        $instance['wmode'] = !empty($new_instance['wmode']) ? $new_instance['wmode'] : 0;
         return $instance;
     }
 
@@ -169,6 +171,7 @@ class YouTubeResponsive extends \WP_Widget {
         $maxw = !empty($instance['maxw']) ? $instance['maxw'] : '';
         $w3c = !empty($instance['w3c']) ? 1 : 0;
         $privacy = !empty($instance['privacy']) ? $instance['privacy'] : 0;
+        $wmode = !empty($instance['wmode']) ? $instance['wmode'] : 0;
         ?>
         <p>
             <label for="<?php echo $this->get_field_id('title'); ?>"><?php echo YOUTUBE_title ?>: </label> 
@@ -283,6 +286,10 @@ class YouTubeResponsive extends \WP_Widget {
         <p>
             <input  id="<?php echo $this->get_field_id('suggested'); ?>" name="<?php echo $this->get_field_name('suggested'); ?>" type="checkbox" value="1" <?php echo esc_attr($suggested) == "1" ? 'checked' : ''; ?> />
             <label for="<?php echo $this->get_field_id('suggested'); ?>"><?php echo YOUTUBE_suggested ?> </label> 
+        </p>
+        <p>
+            <input  id="<?php echo $this->get_field_id('wmode'); ?>" name="<?php echo $this->get_field_name('wmode'); ?>" type="checkbox" value="1" <?php echo esc_attr($wmode) == "1" ? 'checked' : ''; ?> />
+            <label for="<?php echo $this->get_field_id('wmode'); ?>">wmode transparent</label> 
         </p>
         <?php
     }
