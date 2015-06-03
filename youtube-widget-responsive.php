@@ -3,11 +3,13 @@
   Plugin Name: YouTube widget responsive
   Description: Widgets responsive and shorcode to embed youtube in your sidebar or in your content, with all available options.
   Author: StefanoAI
-  Version: 1.0.1
+  Version: 1.1
   Author URI: http://www.stefanoai.com
  */
 
 class YouTubeResponsive extends \WP_Widget {
+
+    static $footer = "";
 
     public function __construct() {
         parent::__construct(
@@ -23,8 +25,9 @@ class YouTubeResponsive extends \WP_Widget {
     }
 
     static function wp_footer() {
-        ?><script type="text/javascript">function AI_responsive_widget() {
-                        jQuery('iframe.StefanoAI-youtube-responsive').each(function() {
+        ?><script type="text/javascript">
+                    function AI_responsive_widget() {
+                        jQuery('iframe.StefanoAI-youtube-responsive').each(function () {
                             var width = jQuery(this).parent().innerWidth();
                             var maxwidth = jQuery(this).css('max-width').replace(/px/, '');
                             var pl = parseInt(jQuery(this).parent().css('padding-left').replace(/px/, ''));
@@ -38,16 +41,46 @@ class YouTubeResponsive extends \WP_Widget {
                         });
                     }
                     if (typeof jQuery !== 'undefined') {
-                        jQuery(document).ready(function() {
+                        jQuery(document).ready(function () {
                             AI_responsive_widget();
                         });
-                        jQuery(window).resize(function() {
+                        jQuery(window).resize(function () {
                             AI_responsive_widget();
                         });
-                    }</script><?php
+                    }
+        <?php if (!empty(YouTubeResponsive::$footer)) { ?>
+                        function onYouTubeIframeAPIReady() {
+            <?php echo YouTubeResponsive::$footer; ?>
+                        }
+                        function StefanoAI_trackYoutubeVideo(state, video) {
+                            if (typeof _config !== 'undefined') {
+                                var forceSyntax = _config.forceSyntax || 0;
+                            } else {
+                                var forceSyntax = 0;
+                            }
+                            if (typeof window.dataLayer !== 'undefined' && !forceSyntax) {
+                                window.dataLayer.push({
+                                    'event': 'youTubeTrack',
+                                    'attributes': {
+                                        'videoUrl': video,
+                                        'videoAction': state
+                                    }
+                                });
+                            }
+                            if (typeof window.ga === 'function' && typeof window.ga.getAll === 'function' && forceSyntax !== 2) {
+                                window.ga('send', 'event', 'YoutubeWidgetResponsive', state, video, 0);
+                            } else if (typeof window._gaq !== 'undefined' && forceSyntax !== 1) {
+                                window._gaq.push(['_trackEvent', 'YoutubeWidgetResponsive', state, video]);
+                            }
+                        }
+        <?php } ?>
+        </script><?php
     }
 
     static function makeEmbedUrl($params) {
+        if (!empty($params['track'])) {
+            wp_enqueue_script("youtube-iframe-api", "https://www.youtube.com/iframe_api", false, false, true);
+        }
         global $youtube_id;
         preg_match('/youtu.be\/([^\/|\?]+)/', $params['video'], $m);
         $idvideo = !empty($m[1]) ? $m[1] : null;
@@ -78,6 +111,9 @@ class YouTubeResponsive extends \WP_Widget {
             $fs = !empty($params['allowfullscreen']) ? $and . 'fs=1' : $and . 'fs=0';
             $iv_load_policy = isset($params['iv_load_policy']) ? $and . 'iv_load_policy=' . $params['iv_load_policy'] : '';
             $loop = isset($params['loop']) ? $and . 'loop=' . $params['loop'] : '';
+            if (!empty($loop) && empty($idlist)) {
+                $idlist = $and . "playlist=$idvideo";
+            }
             $modestbranding = isset($params['modestbranding']) ? $and . 'modestbranding=' . $params['modestbranding'] : '';
             $rel = !empty($params['suggested']) && $params['suggested'] == '1' ? '' : $and . 'rel=0';
             $showinfo = !empty($params['showinfo']) && $params['showinfo'] == '1' ? '' : $and . 'showinfo=0';
@@ -92,7 +128,45 @@ class YouTubeResponsive extends \WP_Widget {
             $style = isset($params['style']) ? esc_attr($params['style']) : '';
             $maxw = !empty($params['maxw']) ? 'max-width:' . intval($params['maxw']) . 'px;' : '';
             @$id = ++$youtube_id;
-            @$urlembed = "<iframe id='$id' class='StefanoAI-youtube-responsive $class' width='160' height='90' src='$url$idvideo?$idlist$autohide$autoplay$cc_load$cc_lang$color$controls$disablekb$end$fs$iv_load_policy$loop$modestbranding$rel$showinfo$start$theme$quality$wmode' frameborder='0' $allowfullscreen style='$maxw$style'></iframe>";
+
+            $track = !empty($params['track']) ? $and . "enablejsapi=1" . $and . "playerapiid=$id" : "";
+
+            @$urlembed = "<iframe id='$id' class='StefanoAI-youtube-responsive $class' width='160' height='90' src='$url$idvideo?$idlist$autohide$autoplay$cc_load$cc_lang$color$controls$disablekb$end$fs$iv_load_policy$loop$modestbranding$rel$showinfo$start$theme$quality$wmode$track' frameborder='0' $allowfullscreen style='$maxw$style'></iframe>";
+            if (!empty($params['track'])) {
+                YouTubeResponsive::$footer.=<<<SCRIPT
+                var player_$id;
+                player_$id = new YT.Player('$id', {
+                    events: {
+                        'onStateChange': function () {
+                            var d = player_$id.getVideoData();
+                            switch (player_$id.getPlayerState()) {
+                                case -1:
+                                    //unstarted
+                                    break;
+                                case 0:
+                                    //ended
+                                    //StefanoAI_trackYoutubeVideo('Ended', d.title + " | " + d.video_id + " (" + d.author + ")");
+                                    break;
+                                case 1:
+                                    //playing
+                                    StefanoAI_trackYoutubeVideo('Playing', d.title + " | " + d.video_id + " (" + d.author + ")");
+                                    break;
+                                case 2:
+                                    //paused
+                                    //StefanoAI_trackYoutubeVideo('Paused', d.title + " | " + d.video_id + " (" + d.author + ")");
+                                    break;
+                                case 3:
+                                    //buffering
+                                    break;
+                                case 5:
+                                    //video cued (When a video is queued and ready for playback)
+                                    break;
+                            }
+                        }
+                    }
+                });
+SCRIPT;
+            }
             return apply_filters('youtube_iframe', $urlembed);
         }
         return '';
@@ -141,6 +215,7 @@ class YouTubeResponsive extends \WP_Widget {
         $instance['w3c'] = isset($new_instance['w3c']) && $new_instance['w3c'] == 0 ? 0 : 1;
         $instance['privacy'] = !empty($new_instance['privacy']) ? $new_instance['privacy'] : 0;
         $instance['wmode'] = !empty($new_instance['wmode']) ? $new_instance['wmode'] : 0;
+        $instance['track'] = !empty($new_instance['track']) ? $new_instance['track'] : 0;
         return $instance;
     }
 
@@ -172,6 +247,7 @@ class YouTubeResponsive extends \WP_Widget {
         $w3c = !empty($instance['w3c']) ? 1 : 0;
         $privacy = !empty($instance['privacy']) ? $instance['privacy'] : 0;
         $wmode = !empty($instance['wmode']) ? $instance['wmode'] : 0;
+        $track = !empty($instance['track']) ? $instance['track'] : 0;
         ?>
         <p>
             <label for="<?php echo $this->get_field_id('title'); ?>"><?php echo YOUTUBE_title ?>: </label> 
@@ -252,6 +328,10 @@ class YouTubeResponsive extends \WP_Widget {
             <input id="<?php echo $this->get_field_id('maxw'); ?>" name="<?php echo $this->get_field_name('maxw'); ?>" type="text" value="<?php echo esc_attr($maxw); ?>" style="width: 4em" /> px
         </p>
         <p>
+            <input  id="<?php echo $this->get_field_id('loop'); ?>" name="<?php echo $this->get_field_name('loop'); ?>" type="checkbox" value="1" <?php echo esc_attr($loop) == "1" ? 'checked' : ''; ?> />
+            <label for="<?php echo $this->get_field_id('loop'); ?>">Loop</label> 
+        </p>
+        <p>
             <input  id="<?php echo $this->get_field_id('allowfullscreen'); ?>" name="<?php echo $this->get_field_name('allowfullscreen'); ?>" type="checkbox" value="1" <?php echo esc_attr($allowfullscreen) == "1" ? 'checked' : ''; ?> />
             <label for="<?php echo $this->get_field_id('allowfullscreen'); ?>"><?php echo YOUTUBE_allowfullscreen ?> </label> 
         </p>
@@ -290,6 +370,10 @@ class YouTubeResponsive extends \WP_Widget {
         <p>
             <input  id="<?php echo $this->get_field_id('wmode'); ?>" name="<?php echo $this->get_field_name('wmode'); ?>" type="checkbox" value="1" <?php echo esc_attr($wmode) == "1" ? 'checked' : ''; ?> />
             <label for="<?php echo $this->get_field_id('wmode'); ?>">wmode transparent</label> 
+        </p>
+        <p>
+            <input  id="<?php echo $this->get_field_id('track'); ?>" name="<?php echo $this->get_field_name('track'); ?>" type="checkbox" value="1" <?php echo esc_attr($track) == "1" ? 'checked' : ''; ?> />
+            <label for="<?php echo $this->get_field_id('track'); ?>">Track video (Google Analytics/Universal Analytics)</label> 
         </p>
         <?php
     }

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=stefa
 Tags: youtube, responsive, widget, autoplay, YouTube embed, YouTube plugin, embed youtube, embedding youtube, no-cookie, youtube plugin, sidebar, simple youtube, annotations, wordpress youtube widget, wordpress youtube embed, video plugin, video widget, shortcode youtube, shortcode
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.0.1
+Stable tag: 1.1
 License: GPLv2 or later
 
 Widgets + ShortCode responsive to embed youtube in your sidebar or in your content [youtube video=...], with all available options.
@@ -20,6 +20,7 @@ Among the various options you can choose:
 <li>- Choose theme of controls bar</li>
 <li>- Choose color of progress bar</li>
 <li>- Show controls bar or not</li>
+<li>- Loop mode</li>
 <li>- Enable fullscreen On/Off</li>
 <li>- Automatically start video On/Off</li>
 <li>- Hide YouTube logo On/Off</li>
@@ -27,6 +28,7 @@ Among the various options you can choose:
 <li>- Enabling Privacy Mode On/Off</li>
 <li>- Enable the suggested videos at the end of playback On/Off</li>
 <li>- Can be set max-width</li>
+<li>- Tracking playing for each video on analytics event</li>
 </ul>
 Languages: EN, IT, AR, DE, ES, FR, HE, HI, RU, ZH, PT (thanks to Amlugil, quadbox, Ksenia, Dietz, Daniel Severo Estrázulas and google Translate)
 
@@ -271,6 +273,13 @@ Thank you so much.
             </li>
         </ul>
     </li>
+    <li><strong>loop</strong>  (supported players: HTML5, AS3)
+        <ul>
+            <li>
+                <p>Values: 0 or 1. The default value is 0. In the case of a single video player, a setting of 1 causes the player to play the initial video again and again. In the case of a playlist player (or custom player), the player plays the entire playlist and then starts again at the first video.</p>
+            </li>
+        </ul>
+    </li>
     <li><strong>iv_load_policy</strong> (supported players: AS3, HTML5)
         <ul>
             <li>
@@ -355,6 +364,13 @@ Thank you so much.
         <ul>
             <li>
                 <p>Set max-height in px at the video iframe</p>
+            </li>
+        </ul>
+    </li>
+    <li><strong>track</strong>
+        <ul>
+            <li>
+                <p>Values: 0 or 1. The parameter's default value is 0. If you set the parameter value to 1, you will find on Google Analytics/Universal Analytics the event on "YoutubeWidgetResponsive" - "Playing" - "Title video | idvideo [author]"</p>
             </li>
         </ul>
     </li>
