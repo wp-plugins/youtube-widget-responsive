@@ -113,6 +113,10 @@ Thank you so much.
 
 == Changelog ==
 
+= 1.1 =
+* Added tracking feature
+* Added loop feature
+
 = 1.0 =
 * replaced WPLANG with get_locale() (WPLANG are deprecated)
 
