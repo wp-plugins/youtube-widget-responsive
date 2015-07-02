@@ -3,7 +3,7 @@
   Plugin Name: YouTube widget responsive
   Description: Widgets responsive and shorcode to embed youtube in your sidebar or in your content, with all available options.
   Author: StefanoAI
-  Version: 1.1.1
+  Version: 1.1.2
   Author URI: http://www.stefanoai.com
  */
 
@@ -26,53 +26,53 @@ class YouTubeResponsive extends \WP_Widget {
 
     static function wp_footer() {
         ?><script type="text/javascript">
-                    function AI_responsive_widget() {
-                        jQuery('iframe.StefanoAI-youtube-responsive').each(function () {
-                            var width = jQuery(this).parent().innerWidth();
-                            var maxwidth = jQuery(this).css('max-width').replace(/px/, '');
-                            var pl = parseInt(jQuery(this).parent().css('padding-left').replace(/px/, ''));
-                            var pr = parseInt(jQuery(this).parent().css('padding-right').replace(/px/, ''));
-                            width = width - pl - pr;
-                            if (maxwidth < width) {
-                                width = maxwidth;
-                            }
-                            jQuery(this).css('width', width + "px");
-                            jQuery(this).css('height', width / (16 / 9) + "px");
-                        });
+            function AI_responsive_widget() {
+                jQuery('iframe.StefanoAI-youtube-responsive').each(function () {
+                    var width = jQuery(this).parent().innerWidth();
+                    var maxwidth = jQuery(this).css('max-width').replace(/px/, '');
+                    var pl = parseInt(jQuery(this).parent().css('padding-left').replace(/px/, ''));
+                    var pr = parseInt(jQuery(this).parent().css('padding-right').replace(/px/, ''));
+                    width = width - pl - pr;
+                    if (maxwidth < width) {
+                        width = maxwidth;
                     }
-                    if (typeof jQuery !== 'undefined') {
-                        jQuery(document).ready(function () {
-                            AI_responsive_widget();
-                        });
-                        jQuery(window).resize(function () {
-                            AI_responsive_widget();
-                        });
-                    }
+                    jQuery(this).css('width', width + "px");
+                    jQuery(this).css('height', width / (16 / 9) + "px");
+                });
+            }
+            if (typeof jQuery !== 'undefined') {
+                jQuery(document).ready(function () {
+                    AI_responsive_widget();
+                });
+                jQuery(window).resize(function () {
+                    AI_responsive_widget();
+                });
+            }
         <?php if (!empty(YouTubeResponsive::$footer)) { ?>
-                        function onYouTubeIframeAPIReady() {
+                function onYouTubeIframeAPIReady() {
             <?php echo YouTubeResponsive::$footer; ?>
-                        }
-                        function StefanoAI_trackYoutubeVideo(state, video) {
-                            if (typeof _config !== 'undefined') {
-                                var forceSyntax = _config.forceSyntax || 0;
-                            } else {
-                                var forceSyntax = 0;
+                }
+                function StefanoAI_trackYoutubeVideo(state, video) {
+                    if (typeof _config !== 'undefined') {
+                        var forceSyntax = _config.forceSyntax || 0;
+                    } else {
+                        var forceSyntax = 0;
+                    }
+                    if (typeof window.dataLayer !== 'undefined' && !forceSyntax) {
+                        window.dataLayer.push({
+                            'event': 'youTubeTrack',
+                            'attributes': {
+                                'videoUrl': video,
+                                'videoAction': state
                             }
-                            if (typeof window.dataLayer !== 'undefined' && !forceSyntax) {
-                                window.dataLayer.push({
-                                    'event': 'youTubeTrack',
-                                    'attributes': {
-                                        'videoUrl': video,
-                                        'videoAction': state
-                                    }
-                                });
-                            }
-                            if (typeof window.ga === 'function' && typeof window.ga.getAll === 'function' && forceSyntax !== 2) {
-                                window.ga('send', 'event', 'YoutubeWidgetResponsive', state, video, 0);
-                            } else if (typeof window._gaq !== 'undefined' && forceSyntax !== 1) {
-                                window._gaq.push(['_trackEvent', 'YoutubeWidgetResponsive', state, video]);
-                            }
-                        }
+                        });
+                    }
+                    if (typeof window.ga === 'function' && typeof window.ga.getAll === 'function' && forceSyntax !== 2) {
+                        window.ga('send', 'event', 'YoutubeWidgetResponsive', state, video, 0);
+                    } else if (typeof window._gaq !== 'undefined' && forceSyntax !== 1) {
+                        window._gaq.push(['_trackEvent', 'YoutubeWidgetResponsive', state, video]);
+                    }
+                }
         <?php } ?>
         </script><?php
     }
@@ -85,16 +85,21 @@ class YouTubeResponsive extends \WP_Widget {
         preg_match('/youtu.be\/([^\/|\?]+)/', $params['video'], $m);
         $idvideo = !empty($m[1]) ? $m[1] : null;
         if (empty($idvideo)) {
-            preg_match('/\?v=([^&]+)/', $params['video'], $m);
+            preg_match('/(&|&amp;|\?|&#038;)v=([^&]+)/', $params['video'], $m);
         }
-        $idvideo = !empty($m[1]) ? $m[1] : $params['video'];
-        $idvideo = !empty($m[1]) ? $m[1] : $params['video'];
-        preg_match('/(&|&amp;|\?|&#038;)list=([^&]+)/', $params['video'], $l);
-        $idlist = !empty($l[2]) ? $l[2] : '';
+        if (preg_match('/(^|&|&amp;|\?|&#038;)list=([^&]+)/', $params['video'], $l)) {
+            $idlist = !empty($l[2]) ? $l[2] : '';
+            if(empty($idvideo)){
+                $idvideo='';
+            }
+        } else {
+            $idvideo = !empty($m[1]) ? $m[1] : $params['video'];
+        }
+
         if (empty($idlist) && !empty($params['list'])) {
             $idlist = $params['list'];
         }
-        if (!empty($idvideo)) {
+        if (!empty($idvideo) || !empty($idlist)) {
             $w3c = !empty($params['w3c']) ? 1 : 0;
             $and = $w3c ? '&amp;' : '&';
             $idlist = !empty($idlist) ? $and . "list=$idlist" : '';
@@ -110,7 +115,7 @@ class YouTubeResponsive extends \WP_Widget {
             $allowfullscreen = !empty($params['allowfullscreen']) ? 'allowfullscreen="true"' : '';
             $fs = !empty($params['allowfullscreen']) ? $and . 'fs=1' : $and . 'fs=0';
             $iv_load_policy = isset($params['iv_load_policy']) ? $and . 'iv_load_policy=' . $params['iv_load_policy'] : '';
-            $loop = isset($params['loop']) ? $and . 'loop=' . $params['loop'] : '';
+            $loop = !empty($params['loop']) ? $and . 'loop=' . $params['loop'] : '';
             if (!empty($loop) && empty($idlist)) {
                 $idlist = $and . "playlist=$idvideo";
             }

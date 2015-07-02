@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=stefa
 Tags: youtube, responsive, widget, autoplay, YouTube embed, YouTube plugin, embed youtube, embedding youtube, no-cookie, youtube plugin, sidebar, simple youtube, annotations, wordpress youtube widget, wordpress youtube embed, video plugin, video widget, shortcode youtube, shortcode
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 
 Widgets + ShortCode responsive to embed youtube in your sidebar or in your content [youtube video=...], with all available options.
@@ -113,6 +113,10 @@ Thank you so much.
 
 == Changelog ==
 
+= 1.1.2 =
+* Fixed always loop video 
+* Added list= to features
+
 = 1.1.1 =
 * Little fix for &#038; character
 
@@ -168,6 +172,8 @@ Thank you so much.
                 "http://www.youtube.com/watch?v=_9tBFVKhn5o"
                 or link to playlist like
                 "https://www.youtube.com/watch?v=KQ6zr6kCPj8&list=PLatuTuqWSQmViIeVthG2y9YssDtm8EvYt"
+                or link to playlist like
+                "list=PLatuTuqWSQmViIeVthG2y9YssDtm8EvYt"
                 or only the id of video like
                 _9tBFVKhn5o
             </li>
