@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=stefa
 Tags: youtube, responsive, widget, autoplay, YouTube embed, YouTube plugin, embed youtube, embedding youtube, no-cookie, youtube plugin, sidebar, simple youtube, annotations, wordpress youtube widget, wordpress youtube embed, video plugin, video widget, shortcode youtube, shortcode
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 
 Widgets + ShortCode responsive to embed youtube in your sidebar or in your content [youtube video=...], with all available options.
@@ -30,7 +30,7 @@ Among the various options you can choose:
 <li>- Can be set max-width</li>
 <li>- Tracking playing for each video on analytics event</li>
 </ul>
-Languages: EN, IT, AR, DE, ES, FR, HE, HI, RU, ZH, PT (thanks to Amlugil, quadbox, Ksenia, Dietz, Daniel Severo Estrázulas and google Translate)
+Languages: EN, IT, AR, DE, ES, FR, HE, HI, RU, ZH, PT, DA (thanks to Amlugil, quadbox, Ksenia, Dietz, Daniel Severo Estrázulas, Ole Lyager and google Translate)
 
 == Installation ==
 
@@ -98,6 +98,28 @@ Show suggested videos show When the video finishes [Suggested... in your languag
 
 YouTube Responsive enable you to place a widget with youtube video. Among the various options there is Also The Possibility to start the video automatically [YouTube... in your language]
 
+Default [Default in your language]
+
+Hide video progress bar after video starts playing [Hide video... in your language]
+
+Show always [Show always... in your language]
+
+Dark [Dark in your language]
+
+Light [Light in your language]
+
+Red [Red in your language]
+
+White [White in your language]
+
+Always [Always in your language]
+
+On video playback [On video... in your language]
+
+Never [Never in your language]
+
+Resolution [Resolution in your language]
+
 Thank you.
 
 = I can make a donation to help keep the software up to date? =
@@ -112,6 +134,9 @@ Thank you so much.
 2. The widget on sidebar auto resized 
 
 == Changelog ==
+
+= 1.1.4 =
+* Added Danish - Dansk language
 
 = 1.1.3 =
 * Added embed url

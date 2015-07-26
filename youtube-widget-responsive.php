@@ -3,7 +3,7 @@
   Plugin Name: YouTube widget responsive
   Description: Widgets responsive and shorcode to embed youtube in your sidebar or in your content, with all available options.
   Author: StefanoAI
-  Version: 1.1.3
+  Version: 1.1.4
   Author URI: http://www.stefanoai.com
  */
 
